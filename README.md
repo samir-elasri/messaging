@@ -1,4 +1,4 @@
-<ol>
+<ol style="display: none">
     <li>Download <a href="https://getcomposer.org/download/">Composer</a></li>
     <li>Download <a href="https://nodejs.org/en/download">Node.js</a></li>
     <li>Place the app in your local server's directory (www for Wamp, htdocs for Xampp)</a></li>
