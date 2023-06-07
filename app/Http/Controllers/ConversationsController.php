@@ -41,6 +41,13 @@ class ConversationsController extends Controller
         return view('conversations.index', compact('conversations','users'));
     }
 
+    public function indexJson()
+    {
+        $conversations = $this->index()->getData()['conversations'];
+
+        return response()->json($conversations);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -111,6 +118,32 @@ class ConversationsController extends Controller
         $messages = $newMessages;
 
         return view('conversations.show', compact('conversation', 'messages'));
+    }
+
+    public function showJson(Conversation $conversation)
+    {
+        // $conversationUser is the pivot model for the user and conversation relationship
+        // ...While $user is the authenticated user that made the request.
+
+        $user = auth()->user();
+        $conversationUser = $conversation->users()->where('user_id', $user->id)->firstOrFail();
+
+        // Mark all messages as read up to the last read message
+        $conversation->messages()
+            ->where('user_id', '!=', $user->id)
+            ->where('id', '>', $conversationUser->last_read_message_id ?? 0)
+            ->update(['is_read' => true]);
+
+        // Retrieve only the new messages in the conversation
+        $lastReadMessageId = $user->conversations()->where('conversation_id', $conversation->id)->first()->pivot->last_read_message_id;
+        
+        $newMessages = $conversation->messages()
+            ->where('id', '>', $lastReadMessageId ?? 0)
+            ->get();
+
+        $messages = $newMessages;
+
+        return response()->json(compact('conversation', 'messages'));
     }
 
     /**

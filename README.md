@@ -1,11 +1,6 @@
+<h4>To run using Docker (You must have Docker installed on your host machine)</h4>
 <ol style="display: none">
-    <li>Download <a href="https://getcomposer.org/download/">Composer</a></li>
-    <li>Download <a href="https://nodejs.org/en/download">Node.js</a></li>
-    <li>Place the app in your local server's directory (www for Wamp, htdocs for Xampp)</a></li>
-    <li>Open phpmyadmin and create a database named: 'messaging'</li>
-    <li>Open the app in VSCode then open a BASH terminal window</li>
-    <li>Run: <b>composer install</b></li>
-    <li>Run: <b>npm install</b> then <b>npm run dev</b></li>
-    <li>Run: <b>php artisan migrate</b></li>
-    <li>Run: <b>php artisan serve</b></li>
+    <li>open a terminal within the project's root directory</li>
+    <li>run the command <b>docker build -t messaging:1.0 .</b></li>
+    <li>run the command <b>docker run --name messagingContainer -p 8000:8000 messaging:1.0</b></li>
 </ol>

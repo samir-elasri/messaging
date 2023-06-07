@@ -27,3 +27,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('conversations', ConversationsController::class);
 Route::resource('messages', MessagesController::class);
 Route::resource('users', UsersController::class);
+
+// Controller functions -> endpoints
+
+// routes/web.php
+
+Route::get('/api/conversations', [ConversationsController::class, 'indexJson']);
+Route::get('/api/conversations/{conversation}/showJson', [ConversationsController::class, 'showJson']);
