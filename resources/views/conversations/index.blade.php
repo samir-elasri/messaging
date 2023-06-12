@@ -5,7 +5,7 @@
 
         {{-- send new message: --}}
         <h4 class="pt-2 pb-2">Send new message</h4>
-        <form method="POST" action="/messaging/messages">
+        <form method="POST" action="/messages">
             @csrf
             <div class="form-row">
                 <div class="col-md-4">
@@ -32,7 +32,7 @@
                 <h4 class="pt-4">Conversations</h4>
                 @foreach ($conversations as $conversation)
                     <hr>
-                    <a href="/messaging/conversations/{{$conversation->id}}">
+                    <a href="/conversations/{{$conversation->id}}">
                         <div class="row d-flex">
                             <div class="col-md-10 w-100 align-self-center">
                                 <p>{{$conversation->messages->last()->content}}</p>

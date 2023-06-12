@@ -12,7 +12,7 @@
                 <div class="row col-8 d-flex mt-2">
             @endif
                     <div class="col-2 w-100">
-                        <p class="w-100 text-center"><a href="/messaging/users/{{$message->user->id}}">{{$message->user->name}}</a></p>
+                        <p class="w-100 text-center"><a href="/users/{{$message->user->id}}">{{$message->user->name}}</a></p>
                     </div>
                     <div class="col-10 w-100 align-self-center">
                         <p class="text-message">{{$message->content}}</p>
@@ -37,7 +37,7 @@
 
     {{-- send new message: --}}
     <div class="col-12 mt-2 mx-auto">
-        <form method="POST" action="/messaging/messages" enctype="multipart/form-data">
+        <form method="POST" action="/messages" enctype="multipart/form-data">
             @csrf
             <input hidden name="conversation_id" value="{{$conversation->id}}">
             <div class="form-row">
@@ -61,7 +61,7 @@
 
         <div class="row">
             <div class="col w-100 mt-1">
-                <form method="POST" action="/messaging/conversations/{{$conversation->id}}">
+                <form method="POST" action="/conversations/{{$conversation->id}}">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-danger" type="submit">Delete conversation</button>
